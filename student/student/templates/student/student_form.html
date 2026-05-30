@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENTS FORM</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        *{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: rgb(245, 239, 232);
+        }
+
+        h1{
+            background-color: black;
+            color: white;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        nav{
+            background-color:ghostwhite ;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a{
+            color: black;
+            background-color:ghostwhite ;
+            text-decoration: none;
+            margin: 50px;
+            font-size: larger;
+            transition: 0.5s;
+        }
+
+        nav a:hover{
+            color:rgb(139, 86, 86);
+        }
+
+        form{
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+        }
+
+        form button{
+            font-size: 20px;
+            background-color: black;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <center>
+        <h1>STUDENTS FORM</h1>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">SAVE</button>
+        </form>
+        <br>
+        <hr>
+
+        <nav>
+            <a href="{% url 'student_list' %}">BACK TO PREVIOUS PAGE</a>
+        </nav>
+    </center>
+</body>
+</html>
