@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENTS LIST</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <style>
+        *{
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            background-color: rgb(245, 239, 232);
+        }
+
+        h1{
+            background-color: black;
+            color: white;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        nav{
+            background-color:ghostwhite ;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav a{
+            color: black;
+            background-color:ghostwhite ;
+            text-decoration: none;
+            margin: 50px;
+            font-size: larger;
+            transition: 0.5s;
+        }
+
+        .ed{
+            margin-top: 30px;
+        }
+
+        .add{
+            margin-bottom: 30px;
+        }
+
+        p{
+            font-size: larger;
+            text-align: center;
+            word-spacing: 15px;
+        }
+
+        nav a:hover{
+            color:rgb(139, 86, 86);
+        }
+
+    </style>
+</head>
+<body>
+    <center><h1>STUDENTS LIST</h1></center>
+    <nav class="add">
+        <a href="{% url 'add_student' %}" >ADD STUDENT</a>
+    </nav>
+    
+    {% for student in students %}
+    <p>
+        {{ student.name }}
+        {{ student.age }}
+        {{ student.course }}
+        {{ student.email }}
+    </p>
+
+    <nav class="ed">
+        <a href="{% url 'update_student' student.id %}">EDIT</a>
+        <a href="{% url 'delete_student' student.id %}">DELETE</a>
+    </nav>
+    {% endfor %}
+</body>
+</html>
+
