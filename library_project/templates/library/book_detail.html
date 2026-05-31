@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Book Details</h2>
+
+<div style="
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    padding: 40px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #667eea;
+">
+
+    <p style="margin: 15px 0; font-size: 16px;"><b style="color: #2c3e50;">Title:</b> <span style="color: #667eea;">{{ book.title }}</span></p>
+
+    <p style="margin: 15px 0; font-size: 16px;"><b style="color: #2c3e50;">Author:</b> <span style="color: #666;">{{ book.author.name }}</span></p>
+
+    <p style="margin: 15px 0; font-size: 16px;"><b style="color: #2c3e50;">ISBN:</b> <span style="color: #666;">{{ book.isbn }}</span></p>
+
+    <p style="margin: 15px 0; font-size: 16px;"><b style="color: #2c3e50;">Available Copies:</b> <span style="color: #27ae60; font-weight: bold;">{{ book.available_copies }}</span></p>
+
+    <hr style="margin: 30px 0; border: none; border-top: 2px solid #e0e0e0;">
+
+    {% if user.is_authenticated %}
+        {% if book.available_copies > 0 %}
+            <a class="btn green" href="{% url 'issue' book.id %}" style="display: inline-block;">
+                📚 Issue Book
+            </a>
+        {% else %}
+            <span style="color:red;font-weight:bold;">
+                Out of Stock
+            </span>
+        {% endif %}
+    {% else %}
+        <a class="btn green" href="{% url 'login' %}">
+            Login to Issue
+        </a>
+    {% endif %}
+
+    <a class="btn" style="background:#2980b9;" href="{% url 'book_list' %}">
+        Back
+    </a>
+
+</div>
+
+{% endblock %}

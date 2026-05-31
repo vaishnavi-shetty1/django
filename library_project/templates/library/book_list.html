@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Books</h2>
+
+<form method="get" class="search-form">
+<input type="text" name="q" placeholder="Search book by title...">
+<button type="submit">Search</button>
+</form>
+
+<table>
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Copies</th>
+<th>Action</th>
+</tr>
+
+{% for book in books %}
+<tr>
+<td>{{ book.title }}</td>
+<td>{{ book.author.name }}</td>
+<td>{{ book.available_copies }}</td>
+<td>
+{% if book.available_copies > 0 %}
+<a class="btn green" href="/issue/{{ book.id }}/">Issue</a>
+{% else %}
+Out
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}
